@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Footwear Industry Toe Impact Test Virtual Lab Simulator. Evaluate impact resistance of safety shoes under EN ISO 20345 and ASTM F2413 standards.">
+  <title>Toe Impact Test - Virtual Lab Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-logo">
+
+        <path d="M4 22V10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12"/>
+        <path d="M12 2v6"/>
+        <path d="M8 5h8"/>
+        <circle cx="12" cy="18" r="3"/>
+      </svg>
+      <h1>Virtual Lab - Toe Impact Test</h1>
+    </div>
+    <div class="test-standard">
+      <span class="badge" id="header-standard-badge">EN ISO 20345</span>
+      <span class="badge-sub" id="header-standard-sub">Toe Protection Impact Resistance (200 Joules)</span>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="lab-container">
+    
+    <!-- Left Column: Lab Instruction & Step Wizard -->
+    <section class="panel guide-panel" id="guidePanel" aria-labelledby="guide-title">
+      <div class="panel-header">
+        <h2 id="guide-title">Lab Instructions</h2>
+        <span class="step-indicator" id="stepIndicator">Step 1 of 6</span>
+      </div>
+      
+      <!-- Horizontal progress line -->
+      <div class="steps-progress">
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <ul class="steps-list">
+          <li class="step-item active" id="stepItem-1" data-step="1">
+            <span class="step-num">1</span>
+            <span class="step-name">Specimen</span>
+          </li>
+          <li class="step-item" id="stepItem-2" data-step="2">
+            <span class="step-num">2</span>
+            <span class="step-name">Clay Prep</span>
+          </li>
+          <li class="step-item" id="stepItem-3" data-step="3">
+            <span class="step-num">3</span>
+            <span class="step-name">Clamping</span>
+          </li>
+          <li class="step-item" id="stepItem-4" data-step="4">
+            <span class="step-num">4</span>
+            <span class="step-name">Config</span>
+          </li>
+          <li class="step-item" id="stepItem-5" data-step="5">
+            <span class="step-num">5</span>
+            <span class="step-name">Impact</span>
+          </li>
+          <li class="step-item" id="stepItem-6" data-step="6">
+            <span class="step-num">6</span>
+            <span class="step-name">Evaluation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Instruction Content Area -->
+      <div class="instruction-content-wrapper">
+        
+        <!-- Step 1: Specimen Selection -->
+        <div class="instruction-card active" id="instruction-1">
+          <h3>Step 1: Select Specimen & Cap Material</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Select a footwear specimen style and toe protective cap material from the inventory matrix below to begin testing.</p>
+          </div>
+          
+          <div class="card-option-grid">
+            <button class="material-btn active" data-material="steel" id="opt-mat-steel">
+              <span class="material-name">Steel Cap</span>
+              <span class="material-desc">Traditional alloy steel. High strength, plastic deformation. Heavy.</span>
+            </button>
+            <button class="material-btn" data-material="aluminium" id="opt-mat-alum">
+              <span class="material-name">Aluminium Cap</span>
+              <span class="material-desc">Aerospace alloy. Light, medium thickness, plastic deformation.</span>
+            </button>
+            <button class="material-btn" data-material="composite" id="opt-mat-comp">
+              <span class="material-name">Composite Cap</span>
+              <span class="material-desc">Fiberglass/Polymer. Elastic recovery, thicker wall, non-conductive.</span>
+            </button>
+            <button class="material-btn" data-material="carbon" id="opt-mat-carbon">
+              <span class="material-name">Carbon Fiber</span>
+              <span class="material-desc">Advanced composite. Extremely stiff, lightweight, elastic-brittle.</span>
+            </button>
+            <button class="material-btn soft-toe" data-material="soft" id="opt-mat-soft">
+              <span class="material-name">Soft Toe (None)</span>
+              <span class="material-desc">Unreinforced work shoe. Thin leather cap only. Non-protective.</span>
+            </button>
+          </div>
+
+          <div class="alert-box note">
+            Specimen cut exposes the inner protective cavity to receive the clay cylinder sensor.
+          </div>
+        </div>
+
+        <!-- Step 2: Clay Cylinder Prep -->
+        <div class="instruction-card" id="instruction-2">
+          <h3>Step 2: Position Internal Clay Cylinder</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Adjust the target height of the clay cylinder sensor (Standard: <strong>22.0 mm</strong>) and position it inside the toe cap cavity.</p>
+          </div>
+
+          <div class="clay-prep-controls">
+            <div class="clay-slider-group">
+              <label for="clay-height-range">Clay Cylinder Height:</label>
+              <div class="range-display">
+                <input type="range" id="clay-height-range" min="18.0" max="25.0" step="0.5" value="22.0">
+                <span class="range-value"><strong id="val-clay-h">22.0</strong> mm</span>
+              </div>
+            </div>
+            <button class="action-btn" id="btn-insert-clay">Position Clay Cylinder</button>
+          </div>
+
+          <div class="alert-box info" id="clay-status-box">
+            <strong>Cylinder Status:</strong> Clay cylinder not placed.
+          </div>
+        </div>
+
+        <!-- Step 3: Clamping & Positioning -->
+        <div class="instruction-card" id="instruction-3">
+          <h3>Step 3: Secure Shoe in Clamping Anvil</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Secure the specimen heel and forefoot onto the safety anvil blocks by engaging the screw clamping fixture.</p>
+          </div>
+
+          <div class="clamp-controls">
+            <button class="action-btn active-green" id="btn-clamp-fixture">Tighten Clamping Fixture</button>
+            <div class="clamp-readout" id="clamp-status-text">Clamp Status: UNSECURED</div>
+          </div>
+        </div>
+
+        <!-- Step 4: Machine Configuration -->
+        <div class="instruction-card" id="instruction-4">
+          <h3>Step 4: Machine Configuration & Energy Setup</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Configure the test standard parameters (mass and drop height) or adjust manually for custom overloading simulation.</p>
+          </div>
+
+          <div class="standard-selector">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="standard-radio" value="en" checked id="radio-std-en">
+                <span class="radio-custom"></span>
+                <span><strong>EN ISO 20345 (200 J)</strong></span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="standard-radio" value="astm" id="radio-std-astm">
+                <span class="radio-custom"></span>
+                <span><strong>ASTM F2413 (101.7 J)</strong></span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="standard-radio" value="custom" id="radio-std-custom">
+                <span class="radio-custom"></span>
+                <span><strong>Custom Profile</strong></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="slider-block" id="custom-slider-block">
+            <div class="control-row">
+              <label for="input-mass">Striker Mass:</label>
+              <div class="range-wrapper">
+                <input type="range" id="input-mass" min="10" max="30" step="0.5" value="20" disabled>
+                <span><span id="lbl-input-mass">20.0</span> kg</span>
+              </div>
+            </div>
+            <div class="control-row">
+              <label for="input-height">Drop Height:</label>
+              <div class="range-wrapper">
+                <input type="range" id="input-height" min="100" max="1500" step="5" value="1019" disabled>
+                <span><span id="lbl-input-height">1019</span> mm</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="energy-preview">
+            <div class="preview-item">
+              <span class="preview-lbl">Target Kinetic Energy</span>
+              <span class="preview-val" id="preview-target-energy">200.0 J</span>
+            </div>
+            <div class="preview-item">
+              <span class="preview-lbl">Est. Impact Velocity</span>
+              <span class="preview-val" id="preview-target-vel">4.47 m/s</span>
+            </div>
+          </div>
+
+          <button class="action-btn active-blue" id="btn-config-confirm">Confirm Configuration</button>
+        </div>
+
+        <!-- Step 5: Run Impact Test -->
+        <div class="instruction-card" id="instruction-5">
+          <h3>Step 5: Execute Striker Release</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Verify safety interlocks, choose playback speed, and trigger the electro-magnetic release to drop the striker.</p>
+          </div>
+          
+          <div class="impact-console">
+            <div class="safety-indicator-bar">
+              <div class="safety-light active-red" id="light-armed">ARMED</div>
+              <div class="safety-light" id="light-catcher">REBOUND CATCHER OK</div>
+            </div>
+            
+            <div class="trigger-box">
+              <button class="drop-btn" id="btn-release-striker" disabled>
+                <span class="drop-icon">⚡</span>
+                <span class="drop-lbl">RELEASE STRIKER</span>
+              </button>
+            </div>
+
+            <div class="slow-motion-selector">
+              <label>Playback Velocity:</label>
+              <div class="speed-btns">
+                <button class="speed-btn active" data-speed="1" id="speed-1x">1.0x (Realtime)</button>
+                <button class="speed-btn" data-speed="0.25" id="speed-025x">0.25x (Slow-Mo)</button>
+                <button class="speed-btn" data-speed="0.05" id="speed-005x">0.05x (Super Slow)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert-box warning" id="test-warning-box">
+            <strong>Warning:</strong> Keep clear of the vertical guide rails during the drop sequence.
+          </div>
+        </div>
+
+        <!-- Step 6: Post-Impact Evaluation -->
+        <div class="instruction-card" id="instruction-6">
+          <h3>Step 6: Measure Clearance & Inspect Cap</h3>
+          <div class="action-instructions">
+            <p><strong>Objective:</strong> Measure the deformed clay cylinder with the caliper and inspect the cap shell for cracks or structural failures.</p>
+          </div>
+          
+          <div class="evaluation-tools">
+            <div class="eval-btn-group">
+              <button class="action-btn" id="btn-extract-clay">1. Extract Clay Cylinder</button>
+              <button class="action-btn" id="btn-measure-clay" disabled>2. Measure Cylinder Height</button>
+              <button class="action-btn" id="btn-inspect-cap" disabled>3. Inspect Cap for Fractures</button>
+              <button class="action-btn" id="btn-view-dent" disabled>4. View Close-up Dent</button>
+            </div>
+
+            <div class="eval-readouts">
+              <div class="eval-row">
+                <span class="eval-lbl">Initial Clay Height:</span>
+                <span class="eval-val" id="eval-init-clay">22.00 mm</span>
+              </div>
+              <div class="eval-row">
+                <span class="eval-lbl">Compressed Height:</span>
+                <span class="eval-val text-yellow" id="eval-comp-clay">--</span>
+              </div>
+              <div class="eval-row">
+                <span class="eval-lbl">Toe Cap Integrity:</span>
+                <span class="eval-val" id="eval-cap-integrity">--</span>
+              </div>
+              <div class="eval-row">
+                <span class="eval-lbl">Peak Deflection:</span>
+                <span class="eval-val text-red" id="eval-peak-deformation">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="verdict-block" id="verdict-banner">
+            <div class="verdict-title" id="verdict-title">PENDING MEASUREMENTS</div>
+            <div class="verdict-reason" id="verdict-reason">Measure the clay cylinder and inspect the cap.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="panel-nav">
+        <button class="nav-arrow" id="btn-prev" disabled>&larr; Previous Step</button>
+        <button class="nav-arrow active-nav" id="btn-next" disabled>Next Step &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Center Workspace Viewport: SVG Interactive Machine -->
+    <section class="panel workbench-panel" aria-label="Interactive Workbench Viewport">
+      <div class="panel-header">
+        <h2 id="bench-title">Laboratory Test Bench</h2>
+      </div>
+      
+      <div class="workbench-viewport">
+        <!-- Main Machine Layout via SVG -->
+        <svg id="machine-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Gradients -->
+          <defs>
+            <linearGradient id="tower-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2a2e39"/>
+              <stop offset="50%" stop-color="#454c5e"/>
+              <stop offset="100%" stop-color="#1e222b"/>
+            </linearGradient>
+            <linearGradient id="rail-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8f94a6"/>
+              <stop offset="50%" stop-color="#e8ebf5"/>
+              <stop offset="100%" stop-color="#585c6b"/>
+            </linearGradient>
+            <linearGradient id="striker-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#495066"/>
+              <stop offset="30%" stop-color="#7681a1"/>
+              <stop offset="100%" stop-color="#2f3442"/>
+            </linearGradient>
+            <radialGradient id="spark-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffe600" stop-opacity="1"/>
+              <stop offset="40%" stop-color="#ff7b00" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#ff1a00" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="clay-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3d8582"/>
+              <stop offset="50%" stop-color="#6ed9d5"/>
+              <stop offset="100%" stop-color="#2c6361"/>
+            </linearGradient>
+            <linearGradient id="fea-stress-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#2979ff"/>
+              <stop offset="30%" stop-color="#00e676"/>
+              <stop offset="60%" stop-color="#ffea00"/>
+              <stop offset="85%" stop-color="#ff9100"/>
+              <stop offset="100%" stop-color="#ff1744"/>
+            </linearGradient>
+            <linearGradient id="shoe-sole-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#141416"/>
+              <stop offset="100%" stop-color="#333338"/>
+            </linearGradient>
+            <linearGradient id="cap-steel-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#abb2bf"/>
+              <stop offset="30%" stop-color="#eceff4"/>
+              <stop offset="60%" stop-color="#8892b0"/>
+              <stop offset="100%" stop-color="#4c566a"/>
+            </linearGradient>
+            <linearGradient id="cap-alum-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e5e9f0"/>
+              <stop offset="50%" stop-color="#d8dee9"/>
+              <stop offset="100%" stop-color="#81a1c1"/>
+            </linearGradient>
+            <linearGradient id="cap-comp-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#4c566a"/>
+              <stop offset="50%" stop-color="#3b4252"/>
+              <stop offset="100%" stop-color="#2e3440"/>
+            </linearGradient>
+            <linearGradient id="cap-carbon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1e1e1e"/>
+              <stop offset="25%" stop-color="#2a2a2a"/>
+              <stop offset="50%" stop-color="#121212"/>
+              <stop offset="75%" stop-color="#2d2d2d"/>
+              <stop offset="100%" stop-color="#151515"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Drop Tower Structure -->
+          <!-- Base Plate / Anvil Block -->
+          <rect x="50" y="600" width="400" height="80" rx="6" fill="#1b1d24" stroke="#2c313d" stroke-width="2"/>
+          <rect x="100" y="600" width="300" height="20" fill="#353b48"/>
+          
+          <!-- Anvil Clamping Support Base -->
+          <path d="M 120 600 L 140 540 L 360 540 L 380 600 Z" fill="#242831" stroke="#373d4a" stroke-width="2"/>
+          <!-- Heavy Anvil Wedge directly under shoe toe cap -->
+          <rect x="230" y="530" width="60" height="10" fill="#4a5263" stroke="#2c313d" stroke-width="1"/>
+          
+          <!-- Tower Vertical Columns/Guide Rails -->
+          <rect x="80" y="50" width="20" height="550" fill="url(#rail-grad)"/>
+          <rect x="400" y="50" width="20" height="550" fill="url(#rail-grad)"/>
+          
+          <!-- Top Support & Electromagnetic Magnet -->
+          <rect x="70" y="30" width="360" height="25" rx="3" fill="#1f232b" stroke="#333a47" stroke-width="2"/>
+          <!-- Magnet Core -->
+          <rect x="220" y="55" width="60" height="30" rx="2" fill="#2c3240" stroke="#48536b" stroke-width="2"/>
+          <!-- Magnet Coils (Copper details) -->
+          <rect x="225" y="60" width="10" height="20" fill="#b87333"/>
+          <rect x="265" y="60" width="10" height="20" fill="#b87333"/>
+          <!-- Status LED on magnet -->
+          <circle id="magnet-led" cx="250" cy="70" r="4" fill="#00e676"/>
+
+          <!-- Height Measuring Ruler markings along left rail -->
+          <g stroke="#4f5666" stroke-width="1">
+            <!-- Major ticks every 50px (approx height markings) -->
+            <line x1="105" y1="80" x2="115" y2="80"/>
+            <line x1="105" y1="130" x2="115" y2="130"/>
+            <line x1="105" y1="180" x2="115" y2="180"/>
+            <line x1="105" y1="230" x2="115" y2="230"/>
+            <line x1="105" y1="280" x2="115" y2="280"/>
+            <line x1="105" y1="330" x2="115" y2="330"/>
+            <line x1="105" y1="380" x2="115" y2="380"/>
+            <line x1="105" y1="430" x2="115" y2="430"/>
+            <line x1="105" y1="480" x2="115" y2="480"/>
+            <line x1="105" y1="530" x2="115" y2="530"/>
+          </g>
+          <!-- Ruler values label -->
+          <g font-family="monospace" font-size="9" fill="#6f7a94" text-anchor="start">
+            <text x="120" y="83">1500mm</text>
+            <text x="120" y="183">1200mm</text>
+            <text x="120" y="243">1020mm</text>
+            <text x="120" y="283">900mm</text>
+            <text x="120" y="383">600mm</text>
+            <text x="120" y="443">457mm</text>
+            <text x="120" y="483">300mm</text>
+          </g>
+
+          <!-- Rebound Safety Catch Catcher Assembly -->
+          <!-- Safety catch hook pivots from right side -->
+          <g id="catcher-mechanism" transform="translate(400, 300)">
+            <!-- Bracket -->
+            <rect x="-10" y="-20" width="10" height="40" fill="#353b48" stroke="#1f232b"/>
+            <!-- Catch arm (rebound hook) -->
+            <path id="catcher-arm" d="M -10 0 L -45 -10 L -45 -3 L -10 10 Z" fill="#4f5666" stroke="#2c313d" transform="rotate(-15)"/>
+            <circle cx="-10" cy="0" r="3" fill="#000"/>
+          </g>
+
+          <!-- Suspension Hoist Cable -->
+          <line id="lift-cable" x1="250" y1="55" x2="250" y2="85" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="4,2" stroke-linecap="round"/>
+
+          <!-- Striker / Impact Weight Assembly (Vertical Translation) -->
+          <g id="striker-assembly" transform="translate(0, 85)">
+            <!-- Weight Blocks (Stacked plates) -->
+            <rect x="180" y="0" width="140" height="60" rx="3" fill="url(#striker-grad)" stroke="#1a1c24" stroke-width="2"/>
+            <line x1="180" y1="20" x2="320" y2="20" stroke="#1a1c24" stroke-width="1"/>
+            <line x1="180" y1="40" x2="320" y2="40" stroke="#1a1c24" stroke-width="1"/>
+            <!-- Linear bearings sliding on rails -->
+            <rect x="75" y="10" width="30" height="40" rx="2" fill="#2d323f" stroke="#1a1c24"/>
+            <rect x="395" y="10" width="30" height="40" rx="2" fill="#2d323f" stroke="#1a1c24"/>
+            <line x1="105" y1="30" x2="180" y2="30" stroke="#2d323f" stroke-width="4"/>
+            <line x1="320" y1="30" x2="395" y2="30" stroke="#2d323f" stroke-width="4"/>
+            
+            <!-- Rebound Catch Pins (hooks engage here) -->
+            <circle cx="380" cy="30" r="5" fill="#ffd200" stroke="#000"/>
+
+            <!-- Striker Shaft/Plunger -->
+            <rect x="238" y="60" width="24" height="60" fill="#60677a" stroke="#232833"/>
+
+            <!-- Wedge-shaped impact blade with standard 90° angle apex tip -->
+            <path d="M 230 120 L 270 120 L 253 147 Q 250 150 247 147 Z" fill="#e2e5f0" stroke="#2c313d" stroke-width="1.5"/>
+            <!-- Hardened striking tip apex -->
+            <path d="M 247 147 Q 250 150 253 147 Z" fill="#ffd200" stroke="#2c313d" stroke-width="1"/>
+          </g>
+
+          <!-- Clamping Fixture (Left Section of Shoe Clamping) -->
+          <g id="clamping-fixture">
+            <!-- Left Jaw Block -->
+            <path d="M 130 540 L 150 500 L 180 500 L 180 540 Z" fill="#303542" stroke="#484f63"/>
+            <!-- Threaded Clamp Screw and Crank Handle -->
+            <rect x="80" y="512" width="60" height="8" fill="#a0a5b5" stroke="#2c313d"/>
+            <path d="M 75 495 L 85 495 L 85 537 L 75 537 Z" fill="#444" stroke="#000"/>
+            <!-- Active indicator overlay for clamping animation -->
+            <path id="clamp-screw-rot" d="M 65 516 L 85 516" stroke="#ffd200" stroke-width="3"/>
+          </g>
+
+          <!-- Cut Shoe Specimen & Internal Toe Cap Setup (Placed on anvil) -->
+          <g id="shoe-specimen" transform="translate(195, 465)">
+            <!-- Inner Shoe Cavity Lining (Background of the cut boot instep) -->
+            <path id="shoe-cavity" d="M -11 68 C 5 36, 18 34, 27 34 L 27 68 Z" fill="#e8ebf0"/>
+
+            <!-- Outer leather shoe wall contour (cut cross-section quarter) -->
+            <path id="shoe-body" d="M -15 68 L -15 45 C 5 32, 18 30, 27 34 L 27 68 Z" fill="#3b4252" stroke="#2e3440" stroke-width="1.5"/>
+            <!-- Outer Stitching on quarter -->
+            <path d="M -13 46 C 5 34, 18 32, 27 34" fill="none" stroke="#d8dee9" stroke-dasharray="2,2" stroke-width="1"/>
+            
+            <!-- Rubber Outsole -->
+            <path d="M -20 75 L 100 75 L 100 68 L -20 68 Z" fill="url(#shoe-sole-grad)"/>
+            <!-- Tread teeth -->
+            <path d="M -15 75 L -10 75 L -10 78 L -15 78 Z M 5 75 L 10 75 L 10 78 L 5 78 Z M 25 75 L 30 75 L 30 78 L 25 78 Z M 45 75 L 50 75 L 50 78 L 45 78 Z M 65 75 L 70 75 L 70 78 L 65 78 Z M 85 75 L 90 75 L 90 78 L 85 78 Z" fill="#141416"/>
+            
+            <!-- Rubber Protective Rear Edge Strip -->
+            <path d="M 26 68 Q 27 34 28 34" fill="none" stroke="#4c566a" stroke-width="2.5" stroke-linecap="round"/>
+
+            <!-- THE TOE CAP SHELL (Dynamic shape, deforms) -->
+            <!-- Solid interior backing (front cup wall) covering the entire cavity under the arch -->
+            <path id="toe-cap-backing" d="M 31 68 Q 31 38 55 38 Q 79 38 79 68 Z" fill="url(#cap-steel-grad)"/>
+            <path id="toe-cap-backing-shadow" d="M 31 68 Q 31 38 55 38 Q 79 38 79 68 Z" fill="#000000" opacity="0.3"/>
+            <!-- The outer cap shell contour path with gradient fill -->
+            <path id="toe-cap-contour" d="M 27 68 Q 27 34 55 34 Q 83 34 83 68 L 79 68 Q 79 38 55 38 Q 31 38 31 68 Z" fill="url(#cap-steel-grad)" stroke="#4c566a" stroke-width="1.5"/>
+            <!-- Inner warning/stress highlight -->
+            <path id="toe-cap-stress" d="M 27 68 Q 27 34 55 34 Q 83 34 83 68 L 79 68 Q 79 38 55 38 Q 31 38 31 68 Z" fill="#ff1a00" opacity="0"/>
+
+            <!-- Leather skin overlay wrapping the toe cap -->
+            <path id="shoe-cap-leather" d="M 27 68 Q 27 34 55 34 Q 83 34 83 68" fill="none" stroke="#3b4252" stroke-width="2"/>
+            <!-- Stitching on toe cap leather -->
+            <path id="shoe-cap-stitch" d="M 27 66 Q 27 32 55 32 Q 83 32 83 66" fill="none" stroke="#d8dee9" stroke-dasharray="2,2" stroke-width="0.8"/>
+            
+            <!-- The Clay Cylinder (initially hidden, visible/deformed based on step) -->
+            <!-- Positioned in the center of the toe cap (x=55, y=68) -->
+            <g id="clay-cylinder" transform="translate(55, 68)" opacity="0">
+              <!-- Clay Cylinder rect/path. Standard is 22mm high (scale factor: 1.25px/mm) -->
+              <path id="clay-path" d="M -8 -27.5 L 8 -27.5 L 8 0 L -8 0 Z" fill="url(#clay-grad)" stroke="#1a3d3c" stroke-width="1"/>
+            </g>
+
+            <!-- Fractures/Cracks Overlay on Toe Cap -->
+            <g id="cap-fractures" stroke="#ff3b30" stroke-width="1.5" fill="none" opacity="0">
+              <path d="M 45 44 L 43 49 L 46 54"/>
+              <path d="M 55 45 L 57 51 L 53 56 M 57 51 L 62 49"/>
+            </g>
+          </g>
+
+          <!-- Clay Cylinder Bench Placeholder (Step 2 click to place) -->
+          <g id="clay-bench-placeholder" transform="translate(340, 580)" opacity="0" style="cursor: pointer;">
+            <path id="clay-placeholder-path" d="M -8 -27.5 L 8 -27.5 L 8 0 L -8 0 Z" fill="url(#clay-grad)" stroke="#1a3d3c" stroke-width="1"/>
+            <text x="0" y="-33" font-size="8" fill="#00e5ff" font-family="monospace" text-anchor="middle" font-weight="700" id="clay-placeholder-label">CLICK TO PLACE</text>
+          </g>
+
+          <!-- Spark Effects Group (Impact visual flare) -->
+          <g id="spark-effect" transform="translate(250, 501)" opacity="0">
+            <circle cx="0" cy="0" r="30" fill="url(#spark-grad)"/>
+            <!-- Little spark particles -->
+            <line x1="0" y1="0" x2="-20" y2="-15" stroke="#ffea00" stroke-width="2"/>
+            <line x1="0" y1="0" x2="25" y2="-10" stroke="#ffa600" stroke-width="1.5"/>
+            <line x1="0" y1="0" x2="5" y2="-28" stroke="#ffea00" stroke-width="2"/>
+            <line x1="0" y1="0" x2="-10" y2="-25" stroke="#ffffff" stroke-width="1"/>
+            <line x1="0" y1="0" x2="18" y2="-22" stroke="#ff5500" stroke-width="1.5"/>
+          </g>
+
+          <!-- Interactive Caliper Overlay (for Step 6 clay measurement) -->
+          <g id="caliper-tool" transform="translate(194, 342.6) scale(1.4)" opacity="0">
+            <!-- Caliper body -->
+            <rect x="0" y="0" width="160" height="16" rx="2" fill="#585c6b" stroke="#222"/>
+            <!-- Caliper depth rod -->
+            <rect x="40" y="16" width="6" height="120" fill="#a0a5b5" stroke="#444"/>
+            <!-- Caliper Slider Jaw (moves vertically) -->
+            <g id="caliper-slider-jaw" transform="translate(0, 0)">
+              <!-- Main slider carriage -->
+              <rect x="22" y="8" width="42" height="30" rx="3" fill="#2d323f" stroke="#111" stroke-width="1.5"/>
+              <!-- Digital Display Window -->
+              <rect x="26" y="14" width="34" height="12" fill="#1b1d24" rx="1"/>
+              <text id="caliper-display" x="43" y="23" font-family="monospace" font-size="10" font-weight="bold" fill="#00e676" text-anchor="middle">00.00</text>
+              <!-- Jaw arm extending down -->
+              <rect x="40" y="38" width="6" height="98" fill="#7f8496" stroke="#333"/>
+              <!-- Thumb wheel -->
+              <circle cx="56" cy="32" r="4" fill="#111"/>
+            </g>
+             <!-- Stationary base jaw -->
+            <rect x="40" y="136" width="20" height="6" fill="#444" stroke="#111"/>
+            <!-- Clay cylinder being measured in caliper -->
+            <path id="caliper-clay-path" d="M 47 136 L 59 136 L 59 136 L 47 136 Z" fill="url(#clay-grad)" stroke="#1a3d3c" stroke-width="1" opacity="0"/>
+          </g>
+
+          <!-- Magnifying Lens / Inspection Tool overlay (for Step 6 cap crack check) -->
+          <g id="lens-tool" transform="translate(250, 480)" opacity="0">
+            <circle cx="0" cy="0" r="32" fill="none" stroke="#ffd200" stroke-width="3"/>
+            <!-- Handle -->
+            <line x1="22" y1="22" x2="45" y2="45" stroke="#ffd200" stroke-width="6" stroke-linecap="round"/>
+            <line x1="22" y1="22" x2="45" y2="45" stroke="#1b1d24" stroke-width="2" stroke-linecap="round"/>
+            <!-- Glowing inner area -->
+            <circle cx="0" cy="0" r="30" fill="#00ffff" opacity="0.08"/>
+          </g>
+        </svg>
+
+        <!-- Side View Detail Overlay -->
+        <div class="side-view-overlay" id="side-view-overlay">
+          <div class="side-view-title">TOE BOX PROFILE (SIDE VIEW)</div>
+          <svg class="side-view-svg" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="side-sole-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1e222b"/>
+                <stop offset="100%" stop-color="#0f1115"/>
+              </linearGradient>
+              <linearGradient id="side-cap-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#abb2bf"/>
+                <stop offset="100%" stop-color="#3b4252"/>
+              </linearGradient>
+            </defs>
+            
+            <!-- Ground Anvil Block -->
+            <rect x="5" y="105" width="150" height="20" rx="3" fill="#242831" stroke="#373d4a" stroke-width="1"/>
+            
+            <!-- Outsole Profile (Side View) -->
+            <path d="M 10 105 L 140 105 L 140 96 C 100 96, 60 98, 10 102 Z" fill="url(#side-sole-grad)" stroke="#111" stroke-width="1"/>
+            
+            <!-- Safety Toe Cap Shell (Side View profile arching over clay) -->
+            <path id="side-toe-cap" d="M 46 45 C 60 45, 85 47, 105 52 C 120 55, 130 75, 130 96" fill="none" stroke="url(#side-cap-grad)" stroke-width="6" stroke-linecap="round"/>
+            <path id="side-toe-cap-inner" d="M 46 45 C 60 45, 85 47, 105 52 C 120 55, 130 75, 130 96" fill="none" stroke="#e2e5f0" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+            
+            <!-- Clay Cylinder (Side View) -->
+            <g id="side-clay-cylinder" transform="translate(64, 96)" opacity="0">
+              <path id="side-clay-path" d="M -18.75 -41.25 L 18.75 -41.25 L 18.75 0 L -18.75 0 Z" fill="url(#clay-grad)" stroke="#1a3d3c" stroke-width="1"/>
+            </g>
+            
+            <!-- Labels with line indicators -->
+            <!-- Pointer to Clay Cylinder -->
+            <g id="side-label-clay" transform="translate(90, 85)" opacity="0">
+              <line x1="-15" y1="0" x2="-40" y2="0" stroke="#00e5ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+              <circle cx="-40" cy="0" r="1.5" fill="#00e5ff"/>
+              <text x="-10" y="3" font-size="8" fill="#00e5ff" font-family="monospace" font-weight="700">CLAY</text>
+            </g>
+            
+            <!-- Pointer to Cap -->
+            <g transform="translate(100, 25)">
+              <path d="M -15 0 L -35 20" stroke="#abb2bf" stroke-width="0.8" stroke-dasharray="2,2" fill="none"/>
+              <circle cx="-35" cy="20" r="1.5" fill="#abb2bf"/>
+              <text x="-10" y="3" font-size="8" fill="#abb2bf" font-family="monospace" font-weight="700">TOE CAP</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- Modal for Close-up Toe Cap Visual Inspection -->
+  <div class="modal-backdrop" id="dentModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-title">Safety Toe Cap - Close-up Visual Inspection</h2>
+        <button class="close-x" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <div class="dent-modal-layout" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: start;">
+          <!-- Left: Dynamic SVG visualization of toe cap dent -->
+          <div class="dent-visual-container" style="background: #0f172a; border-radius: 8px; padding: 20px; border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); min-height: 320px; position: relative;">
+            <div style="position: absolute; top: 10px; left: 10px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">VISUALIZATION MODE: TOP-DOWN ISOMETRIC</div>
+            <svg id="dent-svg" viewBox="0 0 300 240" width="100%" height="220" style="margin-top: 15px;">
+              <defs>
+                <radialGradient id="modal-steel-grad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#eceff4"/>
+                  <stop offset="50%" stop-color="#abb2bf"/>
+                  <stop offset="100%" stop-color="#3b4252"/>
+                </radialGradient>
+                <radialGradient id="modal-alum-grad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="60%" stop-color="#d8dee9"/>
+                  <stop offset="100%" stop-color="#5e81ac"/>
+                </radialGradient>
+                <radialGradient id="modal-comp-grad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#4c566a"/>
+                  <stop offset="70%" stop-color="#2e3440"/>
+                  <stop offset="100%" stop-color="#1b1f27"/>
+                </radialGradient>
+                <radialGradient id="modal-carbon-grad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#2d2d2d"/>
+                  <stop offset="80%" stop-color="#121212"/>
+                  <stop offset="100%" stop-color="#050505"/>
+                </radialGradient>
+                <radialGradient id="modal-leather-grad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#8b5a2b"/>
+                  <stop offset="70%" stop-color="#5c3a21"/>
+                  <stop offset="100%" stop-color="#3d2212"/>
+                </radialGradient>
+                <radialGradient id="fea-gradient" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#ef4444"/>
+                  <stop offset="30%" stop-color="#ea580c"/>
+                  <stop offset="50%" stop-color="#d97706"/>
+                  <stop offset="70%" stop-color="#10b981"/>
+                  <stop offset="100%" stop-color="#0284c7"/>
+                </radialGradient>
+                <pattern id="carbon-pattern" width="6" height="6" patternUnits="userSpaceOnUse">
+                  <path d="M 0 3 L 6 3 M 3 0 L 3 6" stroke="#222" stroke-width="1"/>
+                  <path d="M 0 0 L 6 6" stroke="#333" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <ellipse cx="150" cy="190" rx="90" ry="25" fill="#000" opacity="0.4"/>
+              
+              <!-- Shoe Outer Welt/Sole -->
+              <path id="modal-shoe-sole" d="M 50 190 C 50 215, 250 215, 250 190 C 250 178, 50 178, 50 190 Z" fill="#1e222b" stroke="#0f1115" stroke-width="1.5"/>
+              <path id="modal-shoe-sole-tread" d="M 70 202 L 75 206 L 80 202 M 110 205 L 115 209 L 120 205 M 150 206 L 155 210 L 160 206 M 180 205 L 185 209 L 190 205 M 220 202 L 225 206 L 230 202" stroke="#0f1115" stroke-width="1.5" fill="none"/>
+
+              <!-- Internal Toe Cap (under the leather) -->
+              <path id="modal-toe-dome" d="M 70 185 C 70 125, 108 85, 150 85 C 192 85, 230 125, 230 185 C 230 197, 190 201, 150 201 C 110 201, 70 197, 70 185 Z" fill="url(#modal-steel-grad)" stroke="#4c566a" stroke-width="1.5"/>
+              <path id="modal-toe-pattern" d="M 70 185 C 70 125, 108 85, 150 85 C 192 85, 230 125, 230 185 C 230 197, 190 201, 150 201 C 110 201, 70 197, 70 185 Z" fill="url(#carbon-pattern)" opacity="0"/>
+              <path id="modal-toe-stress" d="M 70 185 C 70 125, 108 85, 150 85 C 192 85, 230 125, 230 185 C 230 197, 190 201, 150 201 C 110 201, 70 197, 70 185 Z" fill="url(#fea-gradient)" opacity="0"/>
+              <path id="modal-dent-crater" d="" fill="#000" opacity="0"/>
+
+              <!-- Shoe Leather Upper (Drawn over cap with opacity for X-Ray overlay) -->
+              <path id="modal-shoe-upper" d="M 60 190 C 60 115, 105 70, 150 70 C 195 70, 240 115, 240 190 C 240 204, 195 210, 150 210 C 105 210, 60 204, 60 190 Z" fill="#3b4252" stroke="#2e3440" stroke-width="2" opacity="0.45"/>
+              <path id="modal-shoe-stitching" d="M 62 188 C 62 117, 106 73, 150 73 C 194 73, 238 117, 238 188" fill="none" stroke="#d8dee9" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+              <g id="modal-dent-marker" transform="translate(150, 80)" opacity="0">
+                <circle cx="0" cy="0" r="12" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+                <circle cx="0" cy="0" r="3" fill="#ef4444"/>
+                <line x1="-18" y1="0" x2="18" y2="0" stroke="#ef4444" stroke-width="1"/>
+                <line x1="0" y1="-18" x2="0" y2="18" stroke="#ef4444" stroke-width="1"/>
+                <text x="0" y="-22" fill="#ef4444" font-size="8" font-family="monospace" text-anchor="middle" font-weight="bold">IMPACT ZONE</text>
+              </g>
+              <g id="modal-cap-fractures" stroke="#ef4444" stroke-width="2.5" fill="none" opacity="0">
+                <path d="M 150 110 L 140 125 L 145 145 M 140 125 L 120 120"/>
+                <path d="M 150 110 L 165 122 L 175 115 M 165 122 L 180 140"/>
+                <path d="M 150 110 L 153 90 L 143 75"/>
+              </g>
+            </svg>
+            <div class="visualizer-toggles" style="display: flex; gap: 8px; margin-top: 10px; z-index: 10;">
+              <button class="small-toggle-btn active" id="btn-toggle-xray">X-RAY VIEW</button>
+              <button class="small-toggle-btn" id="btn-toggle-fea">FEA STRESS MAP</button>
+              <button class="small-toggle-btn" id="btn-toggle-marker">IMPACT TARGET</button>
+            </div>
+          </div>
+          <!-- Right: Inspection Specs -->
+          <div class="dent-specs" style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+              <h3 style="font-size: 1.15rem; font-family: var(--font-display); font-weight: 600; color: var(--text-main); margin-bottom: 4px;" id="modal-material-name">Steel Alloy Cap</h3>
+              <span class="badge" id="modal-specimen-badge" style="display: inline-block;">SAFETY SHOE (CLASS I)</span>
+            </div>
+            <div class="spec-list" style="display: flex; flex-direction: column; gap: 8px; font-family: var(--font-body); font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Impact Energy Applied:</span>
+                <strong id="modal-impact-energy" style="color: var(--text-main);">200.0 J</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Peak Striking Force:</span>
+                <strong id="modal-peak-force" style="color: var(--accent-purple);">27.50 kN</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Max Dynamic Deflection:</span>
+                <strong id="modal-max-deflection" style="color: var(--accent-red);">15.2 mm</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Permanent Dent Depth:</span>
+                <strong id="modal-dent-depth" style="color: var(--accent-yellow);">11.4 mm</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Cap Integrity State:</span>
+                <strong id="modal-cap-state" style="color: var(--accent-green);">INTACT (NO CRACKS)</strong>
+              </div>
+            </div>
+            <div class="analysis-box" style="background-color: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px; font-size: 0.82rem; line-height: 1.45;">
+              <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">Metallurgical & Structural Analysis:</strong>
+              <p id="modal-dent-analysis" style="color: var(--text-muted);">The steel toe cap undergoes significant plastic deformation under a 200J impact. This high ductility absorbs the kinetic energy, preventing brittle failure but resulting in a permanent crown indentation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="background-color: var(--bg-primary);">
+        <button class="action-btn" id="btn-close-modal-footer" style="padding: 8px 16px;">Close Inspection</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
