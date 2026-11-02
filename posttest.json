@@ -1,0 +1,116 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "For a standard footwear specimen of European Size 42 (UK Size 8) tested under EN ISO 20345 at 200 Joules, what is the minimum acceptable clay clearance height required to PASS?",
+      "answers": {
+        "a": "10.0 mm",
+        "b": "12.5 mm",
+        "c": "14.0 mm",
+        "d": "18.0 mm"
+      },
+      "correctAnswer": "c",
+      "reason": "According to EN ISO 20345 (and IS 15298 Part 2) Table 4, safety footwear of sizes 41 to 42 (UK 7 to 8) must retain a minimum internal clearance of at least 14.0 mm after the 200 J impact."
+    },
+    {
+      "question": "If a footwear specimen retains a compressed clay height of 14.8 mm, but visual and optical inspection reveals a sharp through-crack in the toe cap shell, what is the final test verdict?",
+      "answers": {
+        "a": "PASS, because clearance is greater than 14.0 mm",
+        "b": "CONDITIONAL PASS, pending re-testing at half energy",
+        "c": "FAIL, because the standard strictly prohibits through-fractures or cracks through which light can pass",
+        "d": "PASS, provided the leather upper is not torn"
+      },
+      "correctAnswer": "c",
+      "reason": "EN ISO 20345 mandates two independent criteria: adequate minimum clearance AND structural cap integrity. Any through-cracking, splitting, or brittle shattering constitutes an automatic FAIL regardless of clearance."
+    },
+    {
+      "question": "An initial modelling clay cylinder of height 22.0 mm is placed under a steel cap. Under a 200 J impact, the cap reaches a peak dynamic deflection of 8.6 mm before partially springing back. What is the final compressed height of the clay?",
+      "answers": {
+        "a": "22.0 mm",
+        "b": "13.4 mm",
+        "c": "8.6 mm",
+        "d": "4.3 mm"
+      },
+      "correctAnswer": "b",
+      "reason": "Because modelling clay undergoes permanent plastic deformation without spring-back, it retains the dimension of maximum dynamic compression: 22.0 mm - 8.6 mm = 13.4 mm."
+    },
+    {
+      "question": "Under ASTM F2413 (Class I/75), what is the minimum required internal clearance for Men's shoe sizes 8 through 9.5?",
+      "answers": {
+        "a": "9.5 mm (0.375 in)",
+        "b": "12.7 mm (0.500 in)",
+        "c": "14.0 mm (0.551 in)",
+        "d": "15.9 mm (0.625 in)"
+      },
+      "correctAnswer": "b",
+      "reason": "ASTM F2413 Table 1 mandates a minimum clearance of 0.500 inches (12.7 mm) for Men's shoe sizes 8 through 9.5 following the 101.7 J impact."
+    },
+    {
+      "question": "In a custom testing configuration, the striker mass is adjusted to 25.0 kg and the drop height is set to 1.20 meters. Assuming g = 9.81 m/s², what is the kinetic energy delivered to the specimen?",
+      "answers": {
+        "a": "200.0 Joules",
+        "b": "245.3 Joules",
+        "c": "294.3 Joules",
+        "d": "350.0 Joules"
+      },
+      "correctAnswer": "c",
+      "reason": "E = m·g·h = 25.0 kg × 9.81 m/s² × 1.20 m = 294.3 Joules."
+    },
+    {
+      "question": "Why does a composite toe cap typically exhibit less permanent post-test deformation than a steel toe cap tested under the same 200 J impact energy, even when peak dynamic deflection was greater?",
+      "answers": {
+        "a": "Composite toe caps have lower density and greater magnetic shielding",
+        "b": "Composite materials possess higher elasticity and undergo elastic spring-back, whereas steel absorbs energy through permanent ductile plastic yield",
+        "c": "Composite toe caps melt during impact and resolidify immediately",
+        "d": "Composite materials absorb the entire impact via chemical reaction"
+      },
+      "correctAnswer": "b",
+      "reason": "Fiberglass and composite matrices behave with high elasticity; they bend deeply under peak load (compressing the clay) and then spring back almost completely, unlike steel which permanently retains ductile plastic deformation."
+    },
+    {
+      "question": "What happens when an unreinforced 'Soft Toe' occupational shoe (EN ISO 20347) is subjected to a 200 J impact in the testing simulator?",
+      "answers": {
+        "a": "It passes with a clearance greater than 15.0 mm",
+        "b": "It fails catastrophically because the upper leather completely crushes the clay to near zero height",
+        "c": "The striker bounces off due to leather elasticity",
+        "d": "The striker jams in the upper guides"
+      },
+      "correctAnswer": "b",
+      "reason": "Without a rigid internal protective cap, ordinary leather and lining offer virtually zero structural resistance to a 200 J / 20 kg impact, resulting in total crushing of the toe space."
+    },
+    {
+      "question": "Why must the impact testing anvil block have a minimum mass of at least 600 kg and be rigidly bolted to a heavy concrete foundation?",
+      "answers": {
+        "a": "To generate an acoustic resonance pulse during striker release",
+        "b": "To ensure negligible energy absorption by the machine foundation, guaranteeing full energy transmission into the footwear specimen",
+        "c": "To prevent the shoe from shifting due to air currents",
+        "d": "To act as an electrical ground against static shock"
+      },
+      "correctAnswer": "b",
+      "reason": "If the base anvil were light or unanchored, significant portions of the 200 J impact energy would be absorbed by foundation vibrations or machine deflection, leading to falsely lenient test results."
+    },
+    {
+      "question": "During the deceleration phase of the impact, what physical law explains why peak dynamic striking force (F_peak) can reach 20 to 30 kN even though striker weight is only ~196 N?",
+      "answers": {
+        "a": "Newton's Second Law and Impulse-Momentum Theorem (F_avg · Δt = m · Δv)",
+        "b": "Hooke's Law for ideal fluids",
+        "c": "Bernoulli's Principle of aerodynamic lift",
+        "d": "Faraday's Law of electromagnetic induction"
+      },
+      "correctAnswer": "a",
+      "reason": "By the impulse-momentum theorem, arresting a 20 kg mass moving at 4.47 m/s over an extremely brief deceleration interval (Δt ≈ 5 to 10 milliseconds) generates dynamic contact reaction forces exceeding 20–30 kN."
+    },
+    {
+      "question": "Under which condition does a Size 8 safety shoe pass the EN ISO 20345 impact test?",
+      "answers": {
+        "a": "Clearance = 13.2 mm, Cap intact",
+        "b": "Clearance = 14.5 mm, Cap has a 10 mm through-crack",
+        "c": "Clearance = 14.5 mm, Cap structurally intact with no through-cracks",
+        "d": "Clearance = 11.5 mm, Cap has slight plastic dent"
+      },
+      "correctAnswer": "c",
+      "reason": "A pass requires meeting both criteria simultaneously: clearance >= 14.0 mm for Size 8, AND the protective cap must remain structurally intact with no through-cracks or fractures."
+    }
+  ]
+}
+

@@ -1,0 +1,116 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the primary objective of performing a Toe Impact Test on safety footwear?",
+      "answers": {
+        "a": "To test the abrasion resistance of the footwear outsole on rough concrete surfaces",
+        "b": "To evaluate the structural integrity and internal clearance of the toe box under sudden high-energy falling mass impact",
+        "c": "To measure the thermal insulation provided by the shoe upper in cold storage environments",
+        "d": "To determine the flexural endurance of the footwear vamp during walking cycles"
+      },
+      "correctAnswer": "b",
+      "reason": "The Toe Impact Test evaluates whether the internal protective toe cap can absorb high-energy dynamic impact from falling objects without crushing the foot or developing catastrophic fractures."
+    },
+    {
+      "question": "According to EN ISO 20345 and IS 15298 (Part 2), what is the mandatory impact energy level required for standard Safety Footwear?",
+      "answers": {
+        "a": "50 Joules",
+        "b": "100 Joules",
+        "c": "200 Joules",
+        "d": "500 Joules"
+      },
+      "correctAnswer": "c",
+      "reason": "EN ISO 20345 and IS 15298 (Part 2) specify an impact energy of 200 Joules for safety footwear. Footwear certified at 100 Joules is classified as protective footwear under EN ISO 20346."
+    },
+    {
+      "question": "Under ASTM F2413 (Class I/75), what is the standardized impact energy requirement in SI units?",
+      "answers": {
+        "a": "50.0 Joules",
+        "b": "75.0 Joules",
+        "c": "101.7 Joules",
+        "d": "200.0 Joules"
+      },
+      "correctAnswer": "c",
+      "reason": "ASTM F2413 Class I/75 requires an impact energy of 75 foot-pounds-force (ft·lbf), which translates exactly to 101.7 Joules in SI metric units."
+    },
+    {
+      "question": "If a standardized striker of mass 20.0 kg is used in a drop tower to deliver 200 Joules of energy (g = 9.81 m/s²), what must be the theoretical drop height?",
+      "answers": {
+        "a": "510 mm",
+        "b": "1019 mm",
+        "c": "1500 mm",
+        "d": "2000 mm"
+      },
+      "correctAnswer": "b",
+      "reason": "Using potential energy E = m·g·h, the drop height h = E / (m·g) = 200 / (20.0 × 9.81) = 1.01936 meters, which equals approximately 1019 mm."
+    },
+    {
+      "question": "What is the theoretical impact velocity of a 20.0 kg striker dropping freely from a height of 1.019 meters immediately prior to striking the shoe?",
+      "answers": {
+        "a": "2.21 m/s",
+        "b": "4.47 m/s",
+        "c": "9.81 m/s",
+        "d": "19.62 m/s"
+      },
+      "correctAnswer": "b",
+      "reason": "Using the kinematic equation v = sqrt(2·g·h), v = sqrt(2 × 9.81 × 1.019) ≈ 4.47 m/s (equivalent to approximately 16.1 km/h)."
+    },
+    {
+      "question": "Why is a cylinder of calibrated modelling clay (plasticine) placed inside the toe cap cavity during the test instead of relying on a post-impact external dial gauge?",
+      "answers": {
+        "a": "Because clay hardens upon impact and bonds the cap to the shoe sole",
+        "b": "Because the clay records the true minimum dynamic clearance height under peak deformation without elastic spring-back",
+        "c": "Because clay acts as a chemical indicator for microscopic leather fractures",
+        "d": "Because clay prevents the metallic striker blade from sparking upon impact"
+      },
+      "correctAnswer": "b",
+      "reason": "Composite and metallic toe caps undergo dynamic elastic spring-back after peak deflection. The modelling clay is purely plastic, so it stays compressed at the minimum height reached during peak impact, accurately measuring foot safety space."
+    },
+    {
+      "question": "What is the primary mechanical difference in deformation behavior between a steel toe cap and a non-metallic composite toe cap under impact?",
+      "answers": {
+        "a": "Steel deforms elastically without yielding, whereas composite deforms only plastically",
+        "b": "Steel absorbs energy through significant plastic yield and ductile deformation, whereas composite exhibits substantial elastic recovery (spring-back)",
+        "c": "Composite caps are three times heavier than steel caps of identical rating",
+        "d": "Steel caps shatter into brittle fragments under 200 J, whereas composite caps melt"
+      },
+      "correctAnswer": "b",
+      "reason": "Steel undergoes ductile plastic deformation, creating a permanent dent. Non-metallic composite caps store energy elastically and rebound significantly, requiring higher peak clearance verification."
+    },
+    {
+      "question": "What is the function of the rebound catcher mechanism on the vertical drop tower apparatus?",
+      "answers": {
+        "a": "To accelerate the striker downward to increase impact speed",
+        "b": "To catch the striker on its upward rebound to prevent secondary impacts from corrupting the specimen and clay height",
+        "c": "To measure the acoustic decibel rating of the metallic collision",
+        "d": "To release the shoe clamp automatically after impact"
+      },
+      "correctAnswer": "b",
+      "reason": "After the primary 200 J collision, the striker bounces upward. If not caught, it will strike the specimen repeatedly (secondary hits), which would crush the clay cylinder further and produce invalid test data."
+    },
+    {
+      "question": "Which of the following standards applies to 'Occupational Footwear' that does NOT require a protective toe cap?",
+      "answers": {
+        "a": "EN ISO 20345",
+        "b": "EN ISO 20346",
+        "c": "EN ISO 20347",
+        "d": "ASTM F2413"
+      },
+      "correctAnswer": "c",
+      "reason": "EN ISO 20347 (and IS 15298 Part 4) specifies Occupational Footwear, which provides slip resistance, antistatic properties, or heel energy absorption, but does not feature an impact-resistant toe cap."
+    },
+    {
+      "question": "What geometry is standardized for the impact striker blade under EN ISO 20344 / ISO 20345?",
+      "answers": {
+        "a": "A hemispherical ball of 100 mm radius",
+        "b": "A flat circular steel disc of 200 mm diameter",
+        "c": "A wedge-shaped steel blade with a 90° included apex angle and a 3 mm rounded tip radius",
+        "d": "A needle-sharp conical indentor with a 30° tip"
+      },
+      "correctAnswer": "c",
+      "reason": "Standard drop tower impactors utilize a hardened alloy steel wedge blade with a 90° included angle, a tip radius of 3.0 ± 0.1 mm, and a length of at least 60 mm."
+    }
+  ]
+}
+
